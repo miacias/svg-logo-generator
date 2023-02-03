@@ -5,11 +5,11 @@ const { createSvg } = require('./create-svg.js');
 
 
 class CLI {
-    constructor(fileName, textChars, shape, design) {
+    constructor(fileName, textChars, shape, designs) {
         this.fileName = fileName;
         this.textChars = textChars;
         this.shape = shape;
-        this.design = []; // will carry array of objects
+        this.designs = []; // will carry array of objects
     }
 
     run() {
@@ -57,13 +57,17 @@ class CLI {
             ])
             .then( ({fileName, textChars, shape, textColor, bgColor}) => {
                 this.fileName = `${fileName.split(" ").join("-")}.svg`; // replaces spaces with hyphens
-                this.design.push({textChars, shape, textColor, bgColor});
+                this.designs.push({textChars, shape, textColor, bgColor});
             })
             .then(() => {
                 return writeFile(
                     join(__dirname, "..", "example-logos", `${this.fileName}`),
-                    createSvg(this.design)
+                    createSvg(this.designs)
                 )
+            })
+            .catch((error) => {
+                console.log("There was an issue creating your logo file.")
+                throw new Error(error);
             });
     }
 
@@ -101,7 +105,7 @@ class CLI {
     //             // if (color === "Other: I have a custom color.") {
     //             //     return this.addHexColor();
     //             // } else {
-    //                 this.design.push({color});
+    //                 this.designs.push({color});
     //                 return
     //             // }
     //         });
@@ -127,7 +131,7 @@ class CLI {
     //             }
     //         ])
     //         .then(({ hex }) => {
-    //             this.design.push({hex});
+    //             this.designs.push({hex});
     //         })
     // }
 }
