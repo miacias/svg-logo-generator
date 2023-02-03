@@ -1,8 +1,10 @@
 // import here
 const Triangle = require("./triangle.js");
 const Circle = require("./circle.js");
+const Square = require("./square.js");
 
-function createSvg(textChars, shape) {
+function createSvg(designs) {
+    console.log(designs)
     // create variables to go into rendered code
     // render things here with .render()
     // standard SVG document format
@@ -15,4 +17,4 @@ function createSvg(textChars, shape) {
 
 module.exports = {createSvg};
 
-// delete file!
+// delete file!?
