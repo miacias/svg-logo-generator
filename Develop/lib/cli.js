@@ -1,15 +1,28 @@
 const inquirer = require("inquirer");
+const { join } = require('path');
+const { writeFile } = require('fs/promises');
+const { createSvg } = require('./create-svg.js');
+
 
 class CLI {
     constructor() {
-        this.design = [];
+        this.fileName = fileName;
+        this.textChars = textChars;
+        this.shape = shape;
+        this.design = []; // will carry array of objects
     }
+
     run() {
         return inquirer
             .prompt([
                 {
                     type: "input",
-                    name: "text",
+                    name: "fileName",
+                    message: "Please give a name for your file."
+                },
+                {
+                    type: "input",
+                    name: "textChars",
                     message: "What letter(s) or character(s) would you like to represent in your logo? (Maximum: 3)",
                     // user can enter up to 3 characters
                     validate(chars) {
@@ -18,16 +31,7 @@ class CLI {
                         }
                         return "Max length exceeded. Please provide 1, 2, or 3 total characters."
                     }
-                }
-            ])
-            .then( ({ text}) => {
-                this.design.push( {text});
-                return this.shape() // asks for shape
-            });
-    }
-    shape() {
-        return inquirer
-            .prompt([
+                },
                 {
                     type: "list",
                     name: "shape",
@@ -37,48 +41,81 @@ class CLI {
                         "triangle",
                         "square"
                     ]
+                },
+                {
+                    type: "confirm",
+                    name: "textColor",
+                    message: "Set text color?",
+                    validate(response) {
+                        if(response) {
+                            return this.addColor();
+                        } else {
+                            return "white"
+                        }
+                    }
+                },
+                {
+                    type: "confirm",
+                    name: "bgColor",
+                    message: "Set background color?",
+                    validate(response) {
+                        if(response) {
+                            return this.addColor();
+                        } else {
+                            return "black"
+                        }
+                    }
                 }
             ])
-            .then( ({ shape}) => {
-                this.design.push(shape);
+            .then( ({fileName, textChars, shape}) => {
+                this.fileName = `${fileName}.svg`;
+                this.design.push({textChars, shape});
                 return this.addColor();
             })
+            .then(() => {
+                return writeFile(
+                    join(__dirname, "..", "example-logos", `${(this.fileName).split(" ").join("-")}.svg`),
+                    createSvg(this.design)
+                )
+            });
     }
+
     addColor() {
         return inquirer
             .prompt([
-                { // CSS color keywords in list of choices
-                    type: "list",
+                {
+                    type: "input",
                     name: "color",
-                    message: "What color would you like?",
-                    choices: [
-                        "black",
-                        "silver",
-                        "gray",
-                        "white",
-                        "maroon",
-                        "red",
-                        "purple",
-                        "fuchsia",
-                        "green",
-                        "lime",
-                        "olive",
-                        "yellow",
-                        "navy",
-                        "blue",
-                        "teal",
-                        "aqua",
-                        "Other: I have a custom color."
-                    ]
+                    message: "What color would you like to use? (Hint: Type in a color by name or with a hexadecimal starting with #)",
+                    // choices: [ // CSS color keywords in list of choices
+                    //     "black",
+                    //     "silver",
+                    //     "gray",
+                    //     "white",
+                    //     "maroon",
+                    //     "red",
+                    //     "purple",
+                    //     "fuchsia",
+                    //     "green",
+                    //     "lime",
+                    //     "olive",
+                    //     "yellow",
+                    //     "navy",
+                    //     "blue",
+                    //     "teal",
+                    //     "aqua",
+                    //     "Other: I have a custom color."
+                    // ],
+                    // default: "black",
                 }
             ])
             // saves standard color OR asks for custom color
             .then(( { color }) => {
-                if (color === "Other: I have a custom color.") {
-                    return this.addHexColor();
-                } else {
-                    this.design.push({color});
-                }
+                // if (color === "Other: I have a custom color.") {
+                //     return this.addHexColor();
+                // } else {
+                    return this.design.push({color});
+                // }
             });
     }
     addHexColor() {
@@ -98,6 +135,7 @@ class CLI {
                     //     }
                     //     return "Please enter a valid hexadecimal color."
                     // }
+                    default: "#ffffff", //white
                 }
             ])
             .then(({ hex }) => {
