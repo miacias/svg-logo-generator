@@ -49,12 +49,23 @@ class CLI {
                     name: "textColor",
                     message: "Which TEXT color would you like to use? (Hint: Type in a color by name OR a hexadecimal starting with #)",
                     default: "white",
-                    // https://stackoverflow.com/questions/1636350/how-to-identify-a-given-string-is-hex-color-format
                     validate: function (response) {
+                        // checks color hexadecimals (https://stackoverflow.com/questions/1636350/how-to-identify-a-given-string-is-hex-color-format)
                         if (response.includes("#")) {
                             const pass = response.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
                             if (pass === null) {
                                 return "Please enter a valid hexadecimal color."
+                            } else { 
+                                return true;
+                            }
+                        }
+                        // checks color words
+                        if (!response.includes("#")) {
+                            const pass = response.match(/^[a-zA-Z\s]+$/)
+                            if (pass === null) {
+                                return "Please enter a valid color word."
+                            } else {
+                                return true;
                             }
                         }
                     }
@@ -64,12 +75,23 @@ class CLI {
                     name: "bgColor",
                     message: "Which BACKGROUND color would you like to use? (Hint: Type in a color by name OR a hexadecimal starting with #)",
                     default: "black",
-                    // https://stackoverflow.com/questions/1636350/how-to-identify-a-given-string-is-hex-color-format
                     validate: function (response) {
+                        // checks color hexadecimals (https://stackoverflow.com/questions/1636350/how-to-identify-a-given-string-is-hex-color-format)
                         if (response.includes("#")) {
                             const pass = response.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
                             if (pass === null) {
                                 return "Please enter a valid hexadecimal color."
+                            } else { 
+                                return true;
+                            }
+                        }
+                        // checks color words
+                        if (!response.includes("#")) {
+                            const pass = response.match(/^[a-zA-Z\s]+$/)
+                            if (pass === null) {
+                                return "Please enter a valid color word."
+                            } else {
+                                return true;
                             }
                         }
                     }
@@ -77,6 +99,8 @@ class CLI {
             ])
             .then(({ fileName, textChars, shape, textColor, bgColor }) => {
                 this.fileName = `${fileName.split(" ").join("-")}.svg`; // replaces spaces with hyphens
+                this.textColor = textColor.toLowerCase();
+                this.bgColor = bgColor.toLowerCase();
                 this.designs.push({ textChars, shape, textColor, bgColor });
                 // let newShape;
                 // switch(shape) {
@@ -105,8 +129,7 @@ class CLI {
                 console.log("Success! New logo saved.")
             })
             .catch((error) => {
-                console.log("There was an issue creating your logo file.")
-                throw new Error(error);
+                console.log("There was an issue creating your logo file.", error)
             });
     }
 }
