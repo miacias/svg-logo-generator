@@ -35,10 +35,16 @@ Documentation referenced:
 
 - Mozilla Development Network
 - Stack Overflow forums
+- [Inquirer package](https://www.npmjs.com/package/inquirer)
+- Jest package
 
 Tutorials referenced:
 
-- 
+- [MDN SVG Tutorial](https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial)
+
+Tools used:
+- [VS Code](https://code.visualstudio.com/)
+- [SVG VS Code extension](https://marketplace.visualstudio.com/items?itemName=jock.svg)
 
 Tutor(s): Alexis San Javier
 
