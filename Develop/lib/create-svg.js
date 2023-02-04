@@ -1,4 +1,4 @@
-// import here
+// imports shape type classes
 const Circle = require("./circle.js");
 const Square = require("./square.js");
 const Triangle = require("./triangle.js");
@@ -22,7 +22,7 @@ function createSvg(designs) {
     // standard SVG document format
     return `
 <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
-    <${newShape} fill="${bgColor}"/>
+    ${newShape}
     <text x="150" y="125" font-size="60" text-anchor="middle" fill=${textColor}>${textChars}</text>
 </svg>`
 }
