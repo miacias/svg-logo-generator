@@ -11,8 +11,13 @@ class Triangle extends Shape {
 // <text x="133" y="97" font-size="50" text-anchor="middle" fill="${this.textColor}">${this.textChars}</text>
 //         `
 // right-pointing triangle
+// return `
+// <polygon xmlns="http://www.w3.org/2000/svg" x="100" y="10" points="70 20 70 180 250 100" fill="${this.bgColor}"/>
+// <text x="130" y="125" font-size="50" text-anchor="middle" fill="${this.textColor}">${this.textChars}</text>
+//         `
+//     }
 return `
-<polygon xmlns="http://www.w3.org/2000/svg" x="100" y="10" points="70 20 70 180 250 100" fill="${this.bgColor}"/>
+<polygon xmlns="http://www.w3.org/2000/svg" x="100" y="10" points="70 20 70 180 250 100" fill="${this.setColor()}"/>
 <text x="130" y="125" font-size="50" text-anchor="middle" fill="${this.textColor}">${this.textChars}</text>
         `
     }

@@ -1,7 +1,6 @@
 
 <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     
-<polygon xmlns="http://www.w3.org/2000/svg" x="100" y="10" points="70 20 70 180 250 100" fill="black"/>
-<text x="120" y="125" font-size="50" text-anchor="middle" fill="white">YES</text>
-        
+<circle cx="150" cy="100" r="80" fill="black"/>
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="white">yes</text>
 </svg>

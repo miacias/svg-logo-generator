@@ -18,6 +18,9 @@ class Shape {
     //         })
     //         .join("")
     // }
+    setColor() {
+        return `${this.bgColor}`
+    }
 }
 
 module.exports = Shape;
