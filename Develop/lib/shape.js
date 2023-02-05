@@ -19,7 +19,7 @@ class Shape {
     //         .join("")
     // }
     setColor() {
-        return `${this.bgColor}`
+        return `${this.bgColor}`;
     }
 }
 
