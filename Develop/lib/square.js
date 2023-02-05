@@ -6,8 +6,9 @@ class Square extends Shape {
     }
     render() {
         // template literal HTML of square with background color
-        return `<rect x="70" y="20" width="160" height="160" fill="${this.bgColor}"/>
-        <text x="150" y="125" font-size="60" text-anchor="middle" fill=${this.textColor}>${this.textChars}</text>`
+        return `
+<rect x="70" y="20" width="160" height="160" fill="${this.bgColor}"/>
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.textChars}</text>`
     }
 }
 
