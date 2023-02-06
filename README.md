@@ -50,6 +50,14 @@ Tutor(s): Alexis San Javier
 
 U. Penn Bootcamp instructor(s): [Dan Gross](https://github.com/DanielWGross)
 
+U. Penn Bootcamp study group:
+- Brenn Voyles
+- Eli Chase
+- Daniel Gardner
+- Kelsey Aldernman
+- Josh Eflin
+- Margaret Saylor
+
 ## License
 
 Please refer to the LICENSE in the repo: [![License](https://img.shields.io/badge/license-MIT-blue?logo=github)](https://github.com/miacias/CLI-readme-builder/blob/main/LICENSE)
