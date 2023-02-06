@@ -1,12 +1,8 @@
+// imported packages and functions
 const inquirer = require("inquirer");
 const { join } = require('path');
 const { writeFile } = require('fs/promises');
 const { createSvg } = require('./create-svg.js');
-// const Triangle = require("./triangle.js");
-// const Circle = require("./circle.js");
-// const Square = require("./square.js");
-
-
 
 class CLI {
     constructor(fileName, designs) {

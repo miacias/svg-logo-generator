@@ -4,7 +4,7 @@
   "description": "Prompts the user to select color, shape, and provide text for the logo and save the generated svg to file.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
