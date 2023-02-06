@@ -7,6 +7,15 @@ class Shape {
     render() {
         throw new Error('Must implement a render() method.');
     }
+    setColor() {
+        return `${this.bgColor}`;
+    }
+    setText() {
+        return `${this.textChars}`;
+    }
+    setTxtColor() {
+        return `${this.textColor}`;
+    }
     // Loop over designs and convert any designs that aren't strings to an html string by calling its render method.
     // renderInnerSvg() {
     //     return this.designs
@@ -18,9 +27,6 @@ class Shape {
     //         })
     //         .join("")
     // }
-    setColor() {
-        return `${this.bgColor}`;
-    }
 }
 
 module.exports = Shape;
