@@ -1,12 +1,14 @@
 const Shape = require('./shape.js');
 
 class Circle extends Shape {
-    constructor(designs) {
-        super(designs);
+    constructor(textChars, textColor, bgColor) {
+        super(textChars, textColor, bgColor);
     }
     render() {
-        // create pieces of a circle
-        return // template literal HTML of circle
+        // template literal HTML of circle with background color
+        return `
+<circle cx="150" cy="100" r="80" fill="${this.setColor()}"/>
+<text x="150" y="125" font-size="60" text-anchor="middle" fill="${this.textColor}">${this.textChars}</text>`
     }
 }
 

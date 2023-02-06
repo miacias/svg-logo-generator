@@ -2,13 +2,15 @@ const inquirer = require("inquirer");
 const { join } = require('path');
 const { writeFile } = require('fs/promises');
 const { createSvg } = require('./create-svg.js');
+// const Triangle = require("./triangle.js");
+// const Circle = require("./circle.js");
+// const Square = require("./square.js");
+
 
 
 class CLI {
-    constructor(fileName, textChars, shape, designs) {
+    constructor(fileName, designs) {
         this.fileName = fileName;
-        this.textChars = textChars;
-        this.shape = shape;
         this.designs = []; // will carry array of objects
     }
 
@@ -47,17 +49,75 @@ class CLI {
                     name: "textColor",
                     message: "Which TEXT color would you like to use? (Hint: Type in a color by name OR a hexadecimal starting with #)",
                     default: "white",
+                    validate: function (response) {
+                        // checks color hexadecimals (https://stackoverflow.com/questions/1636350/how-to-identify-a-given-string-is-hex-color-format)
+                        if (response.includes("#")) {
+                            const pass = response.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
+                            if (pass === null) {
+                                return "Please enter a valid hexadecimal color."
+                            } else { 
+                                return true;
+                            }
+                        }
+                        // checks color words
+                        if (!response.includes("#")) {
+                            const pass = response.match(/^[a-zA-Z\s]+$/)
+                            if (pass === null) {
+                                return "Please enter a valid color word."
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
                 },
                 {
                     type: "input",
                     name: "bgColor",
                     message: "Which BACKGROUND color would you like to use? (Hint: Type in a color by name OR a hexadecimal starting with #)",
                     default: "black",
+                    validate: function (response) {
+                        // checks color hexadecimals (https://stackoverflow.com/questions/1636350/how-to-identify-a-given-string-is-hex-color-format)
+                        if (response.includes("#")) {
+                            const pass = response.match(/^#(?:[0-9a-fA-F]{3}){1,2}$/)
+                            if (pass === null) {
+                                return "Please enter a valid hexadecimal color."
+                            } else { 
+                                return true;
+                            }
+                        }
+                        // checks color words
+                        if (!response.includes("#")) {
+                            const pass = response.match(/^[a-zA-Z\s]+$/)
+                            if (pass === null) {
+                                return "Please enter a valid color word."
+                            } else {
+                                return true;
+                            }
+                        }
+                    }
                 }
             ])
-            .then( ({fileName, textChars, shape, textColor, bgColor}) => {
+            .then(({ fileName, textChars, shape, textColor, bgColor }) => {
                 this.fileName = `${fileName.split(" ").join("-")}.svg`; // replaces spaces with hyphens
-                this.designs.push({textChars, shape, textColor, bgColor});
+                this.textColor = textColor.toLowerCase();
+                this.bgColor = bgColor.toLowerCase();
+                this.designs.push({ textChars, shape, textColor, bgColor });
+                // let newShape;
+                // switch(shape) {
+                //     case "circle":
+                //         newShape = new Circle(textChars, textColor, bgColor);
+                //         break;
+                //     case "square":
+                //         newShape = new Square(textChars, textColor, bgColor);
+                //         break;
+                //     case "triangle":
+                //         newShape = new Triangle(textChars, textColor, bgColor);
+                //         break;
+                // }
+                // return writeFile(
+                //     join(__dirname, "..", "example-logos", `${this.fileName}`),
+                //     newShape.render()
+                // )
             })
             .then(() => {
                 return writeFile(
@@ -65,75 +125,13 @@ class CLI {
                     createSvg(this.designs)
                 )
             })
+            .then(() => {
+                console.log("Success! New logo saved.")
+            })
             .catch((error) => {
-                console.log("There was an issue creating your logo file.")
-                throw new Error(error);
+                console.log("There was an issue creating your logo file.", error)
             });
     }
-
-    // addColor() {
-    //     return inquirer
-    //         .prompt([
-    //             {
-    //                 type: "input",
-    //                 name: "color",
-    //                 message: "What color would you like to use? (Hint: Type in a color by name OR a hexadecimal starting with #)",
-    //                 // choices: [ // CSS color keywords in list of choices
-    //                 //     "black",
-    //                 //     "silver",
-    //                 //     "gray",
-    //                 //     "white",
-    //                 //     "maroon",
-    //                 //     "red",
-    //                 //     "purple",
-    //                 //     "fuchsia",
-    //                 //     "green",
-    //                 //     "lime",
-    //                 //     "olive",
-    //                 //     "yellow",
-    //                 //     "navy",
-    //                 //     "blue",
-    //                 //     "teal",
-    //                 //     "aqua",
-    //                 //     "Other: I have a custom color."
-    //                 // ],
-    //                 // default: "black",
-    //             }
-    //         ])
-    //         // saves standard color OR asks for custom color
-    //         .then(( { color }) => {
-    //             // if (color === "Other: I have a custom color.") {
-    //             //     return this.addHexColor();
-    //             // } else {
-    //                 this.designs.push({color});
-    //                 return
-    //             // }
-    //         });
-    // }
-    // addHexColor() {
-    //     return inquirer
-    //         .prompt([
-    //             {
-    //                 type: "input",
-    //                 name: "hex",
-    //                 message: "Please input custom hexadecimal color beginning with #",
-    //                 // validate(hexadecimal) {
-    //                 //     // https://stackoverflow.com/questions/1636350/how-to-identify-a-given-string-is-hex-color-format
-    //                 //     const pass = hexadecimal.match(
-    //                 //         ^#(?:[0-9a-fA-F]{3}){1,2}$
-    //                 //     );
-    //                 //     if (pass) {
-    //                 //         return true;
-    //                 //     }
-    //                 //     return "Please enter a valid hexadecimal color."
-    //                 // }
-    //                 default: "#ffffff", //white
-    //             }
-    //         ])
-    //         .then(({ hex }) => {
-    //             this.designs.push({hex});
-    //         })
-    // }
 }
 
 module.exports = CLI;
