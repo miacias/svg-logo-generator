@@ -1,5 +1,18 @@
 const Square = require("../lib/square");
 
+// tests square color
+describe("Square", () => {
+    it("should create a square with a correct background color", () => {
+        // arrange
+        const shape = new Square();
+        // act
+        shape.setColor("blue");
+        // assert
+        expect(shape.render()).toEqual(`<rect x="70" y="20" width="160" height="160" fill="blue"/>`);
+    })
+})
+
+// tests complete square
 // describe("Square", () => {
 //     it("should create a square with with correct shape color, text content, and text color", () => {
 //         // arrange test
@@ -15,15 +28,3 @@ const Square = require("../lib/square");
 //         expect(createSquare()).toEqual(returnedSquare);
 //     })
 // })
-
-// tests square color
-describe("Square", () => {
-    it("should create a square with a correct background color", () => {
-        // arrange
-        const shape = new Square();
-        // act
-        shape.setColor("blue");
-        // assert
-        expect(shape.render()).toEqual(`<rect x="70" y="20" width="160" height="160" fill="blue"/>`);
-    })
-})

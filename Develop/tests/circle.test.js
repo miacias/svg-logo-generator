@@ -1,5 +1,18 @@
 const Circle = require("../lib/circle");
 
+// tests circle color
+describe("Circle", () => {
+    it("should create a circle with a correct background color", () => {
+        // arrange
+        const shape = new Circle();
+        // act
+        shape.setColor("blue");
+        // assert
+        expect(shape.render()).toEqual(`<circle cx="150" cy="100" r="80" fill="blue"/>`);
+    })
+})
+
+// tests complete circle
 // describe("Circle", () => {
 //     it("should create a circle with with correct shape color, text content, and text color", () => {
 //         // arrange test
@@ -15,15 +28,3 @@ const Circle = require("../lib/circle");
 //         expect(createCircle()).toEqual(returnedCircle);
 //     })
 // })
-
-// tests circle color
-describe("Circle", () => {
-    it("should create a circle with a correct background color", () => {
-        // arrange
-        const shape = new Circle();
-        // act
-        shape.setColor("blue");
-        // assert
-        expect(shape.render()).toEqual(`<circle cx="150" cy="100" r="80" fill="blue"/>`);
-    })
-})

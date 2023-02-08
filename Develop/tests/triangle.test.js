@@ -1,6 +1,18 @@
 const Triangle = require("../lib/triangle");
 
-// my test
+// class-provided test: tests triangle color
+describe("Triangle", () => {
+    it("should create a triangle with a correct background color", () => {
+        // arrange
+        const shape = new Triangle();
+        // act
+        shape.setColor("blue");
+        // assert
+        expect(shape.render()).toEqual('<polygon points="150, 18 244, 182 56, 182" fill="blue"/>');
+    })
+})
+
+// tests complete triangle
 // describe("Triangle", () => {
 //     it("should create a triangle with with correct shape color, text content, and text color", () => {
 //         // arrange test
@@ -17,16 +29,3 @@ const Triangle = require("../lib/triangle");
 //         expect(createTriangle()).toEqual(returnedTriangle);
 //     })
 // })
-
-// class-provided test: tests triangle color
-describe("Triangle", () => {
-    it("should create a triangle with a correct background color", () => {
-        // arrange
-        const shape = new Triangle();
-        // act
-        shape.setColor("blue");
-        // assert
-        expect(shape.render()).toEqual('<polygon points="150, 18 244, 182 56, 182" fill="blue"/>');
-    })
-})
-// return `<polygon points="150, 18 244, 182 56, 182" fill="${this.setColor()}"/>`
