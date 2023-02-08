@@ -11,7 +11,6 @@ Every business or social endeavor does better when it can reach out via multimed
 - [Installation](#installation)
 - [Usage](#usage)
 - [Tests](#tests)
-- [Roadmap](#roadmap)
 - [Contact](#contact)
 - [Credits](#credits)
 - [License](#license)
@@ -19,16 +18,27 @@ Every business or social endeavor does better when it can reach out via multimed
 
 ## Installation
 
-To run this interface on your machine, please clone this repository locally to your machine.
-1. Be sure to install Node.js version 16 and run `npm init -y` in the root folder to create a package.json file.
-2. Install the Inquirer package with `npm install inquirer 8.2.4` to receive the correct version.
-3. Initialize the app in your terminal's Develop folder with `node index.js`
-4. Follow the prompts to create your logo!
+To run this interface, please clone this repository locally to your machine.
+1. Be sure to install Node.js version 16 and run `npm i` in the root folder to install the Inquirer package and Jest for later testing.
+2. Initialize the app in your terminal's Develop folder with `node index.js`
+3. Follow the prompts to create your logo!
 
 
 ## Usage
+
+After initializing with node index.js, a series of prompts will guide you through. Be sure to respond to each prompt until you receive the notification that your SVG logo has been saved!
+
+[See demonstration of how it works here!]()
+
+
 ## Tests
-## Roadmap
+
+To test this interface, please clone this repository locally to your machine.
+1. Be sure to install Node.js version 16 and run `npm i` in the root folder to install the Inquirer and Jest.js.
+2. Initialize Jest in your terminal's Develop folder with `npm run test`
+3. Follow the prompts to create your logo!
+
+
 ## Credits
 
 Documentation referenced:
@@ -44,19 +54,22 @@ Tutorials referenced:
 
 Tools used:
 - [VS Code](https://code.visualstudio.com/)
-- [SVG VS Code extension](https://marketplace.visualstudio.com/items?itemName=jock.svg)
+- Inquirer
+- Jest.js
 
-Tutor(s): Alexis San Javier
+Tutor(s): 
+- [Alexis San Javier](https://github.com/code-guy21) - file structure and file workflow
 
 U. Penn Bootcamp instructor(s): [Dan Gross](https://github.com/DanielWGross)
 
 U. Penn Bootcamp study group:
-- Brenn Voyles
-- Eli Chase
-- Daniel Gardner
-- Kelsey Aldernman
-- Josh Eflin
-- Margaret Saylor
+
+- [Brenn Voyles](https://github.com/brennaveir)
+- [Daniel Gardner](https://github.com/gardnerd06)
+- [Margaret Saylor](https://github.com/msaylorphila)
+- [Fredrick Chang](https://github.com/LearnedDr)
+- [Stevie O'Connell](https://github.com/OConnell-Coder)
+
 
 ## License
 

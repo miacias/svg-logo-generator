@@ -98,26 +98,10 @@ class CLI {
                 this.textColor = textColor.toLowerCase();
                 this.bgColor = bgColor.toLowerCase();
                 this.designs.push({ textChars, shape, textColor, bgColor });
-                // let newShape;
-                // switch(shape) {
-                //     case "circle":
-                //         newShape = new Circle(textChars, textColor, bgColor);
-                //         break;
-                //     case "square":
-                //         newShape = new Square(textChars, textColor, bgColor);
-                //         break;
-                //     case "triangle":
-                //         newShape = new Triangle(textChars, textColor, bgColor);
-                //         break;
-                // }
-                // return writeFile(
-                //     join(__dirname, "..", "example-logos", `${this.fileName}`),
-                //     newShape.render()
-                // )
             })
             .then(() => {
                 return writeFile(
-                    join(__dirname, "..", "example-logos", `${this.fileName}`),
+                    join(__dirname, "..", "dist/example-logos", `${this.fileName}`),
                     createSvg(this.designs)
                 )
             })
