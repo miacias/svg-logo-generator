@@ -18,7 +18,7 @@ const Triangle = require("../lib/triangle");
 //     })
 // })
 
-// class-provided test
+// class-provided test: tests triangle color
 describe("Triangle", () => {
     it("should create a triangle with a correct background color", () => {
         // arrange
