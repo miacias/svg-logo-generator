@@ -28,7 +28,7 @@ To run this interface, please clone this repository locally to your machine.
 
 After initializing with node index.js, a series of prompts will guide you through. Be sure to respond to each prompt until you receive the notification that your SVG logo has been saved!
 
-[See demonstration of how it works here!]()
+[See demonstration of how it works here!](https://youtu.be/9LjQaDAuX8I)
 
 
 ## Tests
