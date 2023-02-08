@@ -2,10 +2,12 @@
 const Circle = require("./circle.js");
 const Square = require("./square.js");
 const Triangle = require("./triangle.js");
+const Shape = require("./shape.js");
 
 function createSvg(designs) {
     // creates variables to go into rendered code
     const { textChars, shape, textColor, bgColor } = designs[0];
+    const newTextTag = new Shape().setText(textChars, textColor)
     let newShape;
     // renders a specific shape-type with .render()
     switch (shape) {
@@ -20,9 +22,15 @@ function createSvg(designs) {
             break;
     }
     // standard SVG document format
-    return `
+//     return `
+// <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+//     ${newShape}
+//     <text x="150" y="125" font-size="60" text-anchor="middle" fill="${newTxtColor}">${newTxt}</text>
+// </svg>`
+return `
 <svg version="1.1" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
     ${newShape}
+    ${newTextTag}
 </svg>`
 }
 
