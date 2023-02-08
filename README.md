@@ -57,8 +57,7 @@ Tools used:
 - Inquirer
 - Jest.js
 
-Tutor(s):
-
+Tutor(s): 
 - [Alexis San Javier](https://github.com/code-guy21) - file structure and file workflow
 
 U. Penn Bootcamp instructor(s): [Dan Gross](https://github.com/DanielWGross)
